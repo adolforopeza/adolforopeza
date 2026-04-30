@@ -17,6 +17,7 @@
 | **DevOps & Tools** | Git, GitHub/GitLab/Bitbucket, Docker, Linux (Ubuntu/CentOS/Debian), Apache/Nginx, Varnish, Elasticsearch, Composer, PHPUnit, Postman |
 | **Methodologies** | Clean Code, PSR Standards, Scrum/Agile, Technical Documentation, CI/CD, Legacy Code Refactoring, Technical Mentorship |
 
+![adolforopeza's Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=adolforopeza&theme=highcontrast&show_icons=true&hide_border=true&layout=compact&card_width=512)
 ---
 
 ## 🛠️ Current Focus
@@ -71,6 +72,8 @@
 ![Centos](https://img.shields.io/badge/CentOS-262577?style=for-the-badge&logo=centos&logoColor=white)
 ![Debian](https://img.shields.io/badge/debian-D70A53?style=for-the-badge&logo=debian&logoColor=white)
 ![Windows](https://custom-icon-badges.demolab.com/badge/Windows-0078D6?style=for-the-badge&logo=windows11&logoColor=white)
+
+
 
 
 <!-- https://github.com/inttter/md-badges CUSTOM badge-->
