@@ -19,6 +19,7 @@ Desarrollador Full Stack con más de 10 años de experiencia en PHP y Magento, e
 
 ---
 <img height="180em" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=adolforopeza&layout=compact&langs_count=7&theme=dark"/>
+
 ---
 
 ### 📂 Proyectos Destacados
