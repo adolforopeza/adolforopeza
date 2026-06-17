@@ -1,0 +1,15 @@
+# #########################
+# IDE & Editors
+# #########################
+.idea/
+.vscode/
+/.buildpath
+/.project
+/.settings
+/.metadata
+/.cache
+/nbproject
+*.swp
+*.lnk
+*.phar
+.idea/workspace.xml
