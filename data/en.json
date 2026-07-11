@@ -1,0 +1,231 @@
+{
+  "core": {
+    "role": "Full Stack PHP Developer, Magento Specialist",
+    "location": "Puerto la Cruz, Anzoátegui, Venezuela",
+    "summary": "Full Stack Developer with over 10 years of experience in PHP and Magento. Specialist in e-commerce, evolutionary and corrective maintenance, Clean Code & PSR standards, and collaborative work in globally distributed agile teams.",
+    "linkedin": "https://linkedin.com/in/adolforopeza",
+    "github": "https://github.com/adolforopeza",
+    "education": "Computer Science Technical",
+    "languages": "Spanish / English B2",
+    "specialty": "PHP / Magento 2",
+    "total_years_exp_in_mage": 0,
+    "total_years_exp_in_php": 0,
+    "dev_php_since": 2009,
+    "dev_mage_since": 2017,
+    "profile": "With over a decade of web application development, I have specialized in Magento 2, leading migrations, complex integrations (ERP, Google Shopping, Odoo), and scalable architectures following PSR and MVVM. I have worked with clients in Argentina, Peru, Canada and Venezuela, delivering custom modules, REST/GraphQL APIs and performance optimizations. My approach combines solid backend, dynamic frontend, and DevOps mindset to ensure quality, maintainability, and measurable results in every delivery."
+  },
+  "expData": [
+    {
+      "company": "Known Online",
+      "role": "Full Stack PHP Developer - Magento",
+      "dates": "03/2025 - 02/2026",
+      "location": "Remote (Argentina)",
+      "summary": "Custom module development under PSR/MVVM. REST/GraphQL integration with continuous unit testing and evolutionary/corrective maintenance.",
+      "points": [
+        "Developed custom modules from scratch following PSR standards and MVVM pattern with scalable architecture.",
+        "Executed evolutionary and corrective maintenance via Plugins, Preferences and admin panel configurations.",
+        "Implemented backend/frontend components: Repositories, Search Criteria, REST/GraphQL, Observers, Cron Jobs, Controllers, UI Components, Knockout.js and LESS.",
+        "PHPUnit unit testing with continuous validation and increased coverage.",
+        "Scrum workflow, Confluence/Jira documentation, Bitbucket version control with code reviews.",
+        "Base modules for bidirectional sync with Odoo and external ERPs."
+      ],
+      "tags": ["Magento 2", "MVVM", "PSR", "PHPUnit", "Odoo", "Scrum", "REST/GraphQL"]
+    },
+    {
+      "company": "Stefanini LATAM",
+      "role": "Full Stack PHP Developer - Magento",
+      "dates": "11/2022 - 03/2025",
+      "location": "Remote (Peru)",
+      "summary": "Massive catalog sync, ERP/Google Shopping integration and critical performance optimization with Full Page Cache.",
+      "points": [
+        "Synchronized massive catalogs integrating ERP and Google Shopping via Shipping/Payment modules consuming external APIs.",
+        "Built full-stack modules with Plugins, Observers, Webhooks, Cron Jobs and Preferences; import/export and URL/catalog management with optimized queries.",
+        "Led performance optimization on Checkout, Catalog Product View and Product Search implementing advanced FPC strategies.",
+        "Refactored legacy modules removing Object Manager anti-pattern and optimizing redundant queries following Clean Code/PSR.",
+        "Documented architecture in Confluence and delivered internal courses for knowledge transfer."
+      ],
+      "tags": ["Performance", "FPC", "Google Shopping", "Refactoring", "Jira"]
+    },
+    {
+      "company": "Logos Corp",
+      "role": "Full Stack PHP Developer - Magento",
+      "dates": "09/2021 - 11/2022",
+      "location": "Remote (Venezuela)",
+      "summary": "Bidirectional Magento 2 ↔ Odoo integration. REST/GraphQL API schemas and custom EAV models design.",
+      "points": [
+        "Built bidirectional integration between Magento 2 and Odoo ensuring commercial information consistency.",
+        "Designed REST/GraphQL schemas guaranteeing interoperability, security and scalability.",
+        "Implemented custom EAV models optimizing MySQL structure.",
+        "Built modules for Custom ProductTypes and async webhooks for automatic order updates.",
+        "Backend grids with sales reports and Excel export; centralized documentation in Confluence."
+      ],
+      "tags": ["Odoo", "REST API", "GraphQL", "EAV", "Custom ProductTypes"]
+    },
+    {
+      "company": "APD Printing",
+      "role": "Full Stack PHP Magento & DevOps",
+      "dates": "10/2016 - 09/2021",
+      "location": "Remote (Canada)",
+      "summary": "Led M1→M2 migration, logistics integrations development and Linode DevOps administration.",
+      "points": [
+        "Led Magento 1 → Magento 2 migration designing clean architecture following PSR and MVVM.",
+        "Built logistics modules (FlagShip, Detrack) and custom payment gateways via REST APIs.",
+        "Internal Laravel 5.6 + AngularJS system for multi-store management connected to Magento via API.",
+        "Administered Linode (CentOS) infrastructure: PHP-FPM, Varnish, Elasticsearch and SSL via console.",
+        "Built landing pages/catalogs from Figma using native Magento 2 components."
+      ],
+      "tags": ["Migration", "DevOps", "Linode", "Laravel", "AngularJS", "Varnish"]
+    },
+    {
+      "company": "SHA de Venezuela C.A.",
+      "role": "Full Stack PHP Developer",
+      "dates": "05/2013 - 10/2016",
+      "location": "On-site (Venezuela)",
+      "summary": "Custom CRM development, REST integrations with WordPress and Linux infrastructure optimization.",
+      "points": [
+        "Custom CRM in Vanilla PHP (PSR/MVC) + MySQL + AngularJS automating client management.",
+        "Standalone Laravel 4 certificate validation app integrated via JSON API with corporate WordPress site.",
+        "Optimized local servers and web hosting with Linux tuning and preventive maintenance.",
+        "Documented systems administration and onboarding guides; GitHub version control per project."
+      ],
+      "tags": ["CRM", "AngularJS", "Laravel 4", "Linux", "WordPress"]
+    },
+    {
+      "company": "Grupo Alma",
+      "role": "Full Stack PHP & SysAdmin",
+      "dates": "04/2012 - 05/2013",
+      "location": "On-site (Venezuela)",
+      "summary": "Profit Plus implementation, Excel/MSSQL migration and billing APIs with WordPress modules.",
+      "points": [
+        "Led implementation of Profit Plus Administrative, Accounting and HR systems.",
+        "Custom Vanilla PHP solution migrating Excel sheets and MSSQL environments to update Profit Plus inventories/products.",
+        "Billing API in PHP/MySQL receiving JSON and generating web reports.",
+        "Built custom WordPress modules and kept websites secure and updated."
+      ],
+      "tags": ["Profit Plus", "MSSQL", "JSON API", "WordPress", "Excel"]
+    },
+    {
+      "company": "MJ Ingeniería C.A.",
+      "role": "PHP Developer",
+      "dates": "10/2009 - 03/2012",
+      "location": "On-site (Venezuela)",
+      "summary": "WordPress administration, Linux maintenance and PHP/MySQL LAN document management tools.",
+      "points": [
+        "Administered website and built custom modules in WordPress.",
+        "Local Linux server maintenance.",
+        "PHP/MySQL application to organize projects/documents accessible via LAN network."
+      ],
+      "tags": ["PHP", "MySQL", "WordPress", "Linux", "GitHub"]
+    }
+  ],
+  "projectsData": [
+    {
+      "icon": "fas fa-shopping-cart",
+      "title": "CustomerPartner for Magento 2",
+      "description": "Native module for managing custom client URLs. MVVM architecture following PSR standards with multi-store administration.",
+      "tech": ["Magento 2", "MVVM", "PSR", "MySQL"]
+    },
+    {
+      "icon": "fas fa-broom",
+      "title": "LogCleaner for Magento 2",
+      "description": "Admin tool for automated log backup and rotation. Reduces server load through scheduled maintenance tasks.",
+      "tech": ["Magento 2", "Cron Jobs", "Shell", "UI Components"]
+    },
+    {
+      "icon": "fas fa-network-wired",
+      "title": "DSR - Management Web App",
+      "description": "Full-stack application for centralized Magento 1 & 2 environment management via REST/GraphQL APIs with unified monitoring.",
+      "tech": ["REST", "GraphQL", "Full Stack", "APIs"]
+    },
+    {
+      "icon": "fas fa-user-tie",
+      "title": "SHA APP - CRM System",
+      "description": "Custom CRM for client management, course scheduling and project planning with dynamic AngularJS interface.",
+      "tech": ["PHP", "MySQL", "AngularJS", "MVC"]
+    },
+    {
+      "icon": "fas fa-certificate",
+      "title": "Certificate Validation Service",
+      "description": "PHP microservice for real-time credential verification exposed via REST API integrated with corporate WordPress.",
+      "tech": ["PHP", "REST API", "WordPress", "Laravel 4"]
+    },
+    {
+      "icon": "fas fa-code-branch",
+      "title": "Open Source Contributions",
+      "description": "Open source contributions, technical documentation and tools for the Magento/PHP developer community.",
+      "tech": ["Open Source", "Documentation", "Git"]
+    }
+  ],
+  "skillsCategories": [
+    {
+      "icon": "fas fa-server",
+      "title": "Backend",
+      "items": ["PHP 8.X", "Magento 1 & 2", "Adobe Commerce", "MySQL", "REST/GraphQL APIs", "Symfony", "Laravel"]
+    },
+    {
+      "icon": "fas fa-palette",
+      "title": "Frontend",
+      "items": ["JavaScript", "Knockout.js", "UI Components", "LESS/SASS", "AngularJS", "PWA Studio", "jQuery"]
+    },
+    {
+      "icon": "fas fa-cloud",
+      "title": "DevOps & Tools",
+      "items": ["Git / GitHub / Bitbucket", "Composer", "Linux SysAdmin", "Varnish / FPC", "Elasticsearch", "Docker"]
+    },
+    {
+      "icon": "fas fa-tasks",
+      "title": "Methodologies",
+      "items": ["Scrum / Agile", "Clean Code / PSR", "TDD / PHPUnit", "Jira / Confluence"]
+    }
+  ],
+  "t": {
+    "nav": { "home": "Home", "about": "About", "experience": "Experience", "projects": "Projects", "contact": "Contact" },
+    "home": {
+      "badge": "Available for new projects",
+      "cta": { "contact": "Contact me", "cv": "Download CV" }
+    },
+    "about": {
+      "title": "About Me",
+      "subtitle": "Over a decade building scalable web solutions",
+      "sidebarTitle": "Personal Information",
+      "name": "Name",
+      "location": "Location",
+      "expYearsPhp": "Total Exp. PHP",
+      "expYearsMage": "Total Exp. Magento",
+      "specialty": "Specialty",
+      "education": "Education",
+      "langs": "Languages",
+      "profileTitle": "Professional Profile",
+      "skillsTitle": "Tech Stack"
+    },
+    "exp": {
+      "title": "Work Experience",
+      "subtitle": "A career built on measurable results and global collaboration"
+    },
+    "proj": {
+      "title": "Featured Projects",
+      "subtitle": "A selection of tools and modules I have built"
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "Got a project in mind? Let's talk.",
+      "infoTitle": "Contact Information",
+      "formTitle": "Send me a message",
+      "formSubtitle": "This form opens Google Forms in a new window",
+      "nameField": "Full name",
+      "emailField": "Email",
+      "companyField": "Company (optional)",
+      "subjectField": "Subject",
+      "messageField": "Message",
+      "submit": "Send via Google Forms",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "linkedinLabel": "LinkedIn",
+      "githubLabel": "GitHub",
+      "locationLabel": "Location",
+      "availability": "Availability",
+      "immediate": "Immediately available for remote contracts"
+    },
+    "footer": { "rights": "All rights reserved." }
+  }
+}

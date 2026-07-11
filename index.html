@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Adolfo Oropeza | Full Stack PHP Developer & Magento Specialist</title>
+  <meta name="description" content="Adolfo Oropeza - Full Stack PHP Developer con más de 10 años de experiencia en Magento 2, PHP, MySQL y desarrollo e-commerce. Especialista en soluciones Adobe Commerce.">
+  <meta name="keywords" content="Adolfo Oropeza, PHP Developer, Magento 2, Full Stack, Adobe Commerce, E-commerce, Backend, Frontend">
+  <meta name="author" content="Adolfo Oropeza">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://adolforopeza.github.io/adolforopeza/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://adolforopeza.github.io/adolforopeza/">
+  <meta property="og:title" content="Adolfo Oropeza | Full Stack PHP Developer">
+  <meta property="og:description" content="Full Stack PHP Developer con más de 10 años de experiencia en Magento 2 y e-commerce.">
+  <meta property="og:image" content="https://github.com/adolforopeza.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://adolforopeza.github.io/adolforopeza/">
+  <meta property="twitter:title" content="Adolfo Oropeza | Full Stack PHP Developer">
+  <meta property="twitter:description" content="Full Stack PHP Developer con más de 10 años de experiencia en Magento 2 y e-commerce.">
+  <meta property="twitter:image" content="https://github.com/adolforopeza.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+
+  <!-- Structured Data - JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Adolfo Oropeza",
+      "jobTitle": "Full Stack PHP Developer & Magento Specialist",
+      "description": "Full Stack Developer con más de 10 años de experiencia en PHP y Magento, especializado en desarrollo de aplicaciones e-commerce",
+      "url": "https://adolforopeza.github.io/adolforopeza/",
+      "sameAs": [
+        "https://github.com/adolforopeza",
+        "https://linkedin.com/in/adolforopeza"
+      ],
+      "worksFor": { "@type": "Organization", "name": "Freelance" },
+      "knowsAbout": ["PHP", "Magento 2", "Adobe Commerce", "MySQL", "JavaScript", "E-commerce", "Backend Development", "Frontend Development"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Puerto la Cruz",
+        "addressRegion": "Anzoátegui",
+        "addressCountry": "Venezuela"
+      }
+    }
+  </script>
+
+  <!-- External Resources -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+  <script src="js/portfolio.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body x-data="portfolio">
+
+<!-- Loading Indicator -->
+<div x-show="!isLoaded" class="loading" x-cloak>
+  <div class="loading-spinner"></div>
+  <span x-text="lang === 'es' ? 'Cargando información...' : 'Loading information...'"></span>
+</div>
+
+<!-- Main Content -->
+<div x-show="isLoaded" x-cloak>
+
+  <!-- Navigation -->
+  <nav class="navbar" :class="{ 'scrolled': scrolled }" @scroll.window="scrolled = window.pageYOffset > 50">
+    <div class="nav-container">
+      <a href="#" class="nav-logo" @click.prevent="navigate('home')">
+        &lt;AO/&gt;<span>.</span>
+      </a>
+
+      <button class="mobile-toggle" @click="mobileOpen = !mobileOpen">
+        <i :class="mobileOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
+      </button>
+
+      <ul class="nav-menu" :class="{ 'active': mobileOpen }">
+        <li><a class="nav-link" :class="{ 'active': section === 'home' }" @click="navigate('home')" x-text="t.nav.home"></a></li>
+        <li><a class="nav-link" :class="{ 'active': section === 'about' }" @click="navigate('about')" x-text="t.nav.about"></a></li>
+        <li><a class="nav-link" :class="{ 'active': section === 'experience' }" @click="navigate('experience')" x-text="t.nav.experience"></a></li>
+        <li><a class="nav-link" :class="{ 'active': section === 'projects' }" @click="navigate('projects')" x-text="t.nav.projects"></a></li>
+        <li><a class="nav-link" :class="{ 'active': section === 'contact' }" @click="navigate('contact')" x-text="t.nav.contact"></a></li>
+        <li>
+          <div class="lang-toggle">
+            <button class="lang-btn" :class="{ 'active': lang === 'es' }" @click="setLang('es')">ES</button>
+            <button class="lang-btn" :class="{ 'active': lang === 'en' }" @click="setLang('en')">EN</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HOME Section -->
+  <section class="section" :class="{ 'active': section === 'home' }">
+    <div class="hero-container">
+      <div class="hero-bg"></div>
+      <div class="hero-card">
+        <div class="hero-info">
+          <span class="hero-badge" x-text="t.home.badge"></span>
+          <h1 class="hero-name">Adolfo Oropeza</h1>
+          <p class="hero-role" x-text="role"></p>
+          <p class="hero-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span x-text="location"></span>
+          </p>
+          <p class="hero-description" x-text="summary"></p>
+
+          <div class="hero-contact">
+            <a :href="linkedin" target="_blank" class="contact-chip">
+              <i class="fab fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a :href="github" target="_blank" class="contact-chip">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+          </div>
+
+          <div class="hero-social">
+            <a :href="github" target="_blank" class="social-btn" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a :href="linkedin" target="_blank" class="social-btn" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            </a>
+          </div>
+
+          <div class="hero-cta">
+            <a @click.prevent="navigate('contact')" href="#" class="btn-primary">
+              <i class="fas fa-paper-plane"></i>
+              <span x-text="t.home?.cta?.contact"></span>
+            </a>
+            <a :href="'CV - Adolfo Oropeza ' + (lang === 'es' ? '(ES)' : '(EN)') + '.pdf'" download class="btn-outline">
+              <i class="fas fa-download"></i>
+              <span x-text="t.home?.cta?.cv"></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-photo">
+          <img src="https://github.com/adolforopeza.png" alt="Adolfo Oropeza" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT Section -->
+  <section class="section" :class="{ 'active': section === 'about' }">
+    <div class="section-header">
+      <h2 class="section-title" x-text="t.about.title"></h2>
+      <p class="section-subtitle" x-text="t.about.subtitle"></p>
+    </div>
+
+    <div class="about-grid">
+      <aside class="about-sidebar">
+        <h3 class="sidebar-title" x-text="t.about.sidebarTitle"></h3>
+        <ul class="info-list">
+          <li>
+            <span class="info-label" x-text="t.about.name"></span>
+            <span class="info-value">Adolfo Oropeza</span>
+          </li>
+          <li>
+            <span class="info-label" x-text="t.about.location"></span>
+            <span class="info-value" x-text="location"></span>
+          </li>
+          <li>
+            <span class="info-label" x-text="t.about.expYearsPhp"></span>
+            <span class="info-value" x-text="totalyearsexpinphp"></span>
+          </li>
+          <li>
+            <span class="info-label" x-text="t.about.expYearsMage"></span>
+            <span class="info-value" x-text="totalyearsexpinmage"></span>
+          </li>
+          <li>
+            <span class="info-label" x-text="t.about.specialty"></span>
+            <span class="info-value" x-text="specialty"></span>
+          </li>
+          <li>
+            <span class="info-label" x-text="t.about.education"></span>
+            <span class="info-value" x-text="education"></span>
+          </li>
+          <li>
+            <span class="info-label" x-text="t.about.langs"></span>
+            <span class="info-value" x-text="languages"></span>
+          </li>
+        </ul>
+      </aside>
+
+      <div class="about-content">
+        <h3 x-text="t.about.profileTitle"></h3>
+        <p x-text="profile"></p>
+
+        <div class="skills-section">
+          <h3 x-text="t.about.skillsTitle"></h3>
+          <div class="skills-grid">
+            <template x-for="(cat, idx) in skills" :key="idx">
+              <div class="skill-card">
+                <h4>
+                  <i :class="cat.icon"></i>
+                  <span x-text="cat.title"></span>
+                </h4>
+                <div class="skill-tags">
+                  <template x-for="(skill, sIdx) in cat.items" :key="sIdx">
+                    <span class="skill-tag" x-text="skill"></span>
+                  </template>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE Section -->
+  <section class="section" :class="{ 'active': section === 'experience' }">
+    <div class="section-header">
+      <h2 class="section-title" x-text="t.exp.title"></h2>
+      <p class="section-subtitle" x-text="t.exp.subtitle"></p>
+    </div>
+
+    <div class="exp-timeline">
+      <template x-for="(exp, idx) in experiences" :key="idx">
+        <div class="exp-item" @click="openModal(exp)">
+          <div class="exp-card">
+            <div class="exp-header">
+              <h3 class="exp-company" x-text="exp.company"></h3>
+              <span class="exp-dates" x-text="exp.dates"></span>
+            </div>
+            <p class="exp-role" x-text="exp.role"></p>
+            <p class="exp-location">
+              <i class="fas fa-map-marker-alt"></i>
+              <span x-text="exp.location"></span>
+            </p>
+            <p class="exp-summary" x-text="exp.summary"></p>
+            <div class="exp-tags">
+              <template x-for="(tag, tIdx) in exp.tags" :key="tIdx">
+                <span class="skill-tag" x-text="tag"></span>
+              </template>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </section>
+
+  <!-- PROJECTS Section -->
+  <section class="section" :class="{ 'active': section === 'projects' }">
+    <div class="section-header">
+      <h2 class="section-title" x-text="t.proj.title"></h2>
+      <p class="section-subtitle" x-text="t.proj.subtitle"></p>
+    </div>
+
+    <div class="projects-grid">
+      <template x-for="(proj, idx) in projects" :key="idx">
+        <div class="project-card">
+          <i :class="proj.icon" class="project-icon"></i>
+          <h3 x-text="proj.title"></h3>
+          <p x-text="proj.description"></p>
+          <div class="project-tech">
+            <template x-for="(tech, tIdx) in proj.tech" :key="tIdx">
+              <span class="skill-tag" x-text="tech"></span>
+            </template>
+          </div>
+        </div>
+      </template>
+    </div>
+  </section>
+
+  <!-- CONTACT Section -->
+  <section class="section" :class="{ 'active': section === 'contact' }">
+    <div class="section-header">
+      <h2 class="section-title" x-text="t.contact.title"></h2>
+      <p class="section-subtitle" x-text="t.contact.subtitle"></p>
+    </div>
+
+    <div class="contact-wrapper">
+      <div class="contact-info-card">
+        <h3 x-text="t.contact.infoTitle"></h3>
+
+        <a :href="linkedin" target="_blank" class="contact-item-full">
+          <i class="fab fa-linkedin"></i>
+          <div class="contact-text">
+            <div class="label" x-text="t.contact.linkedinLabel"></div>
+            <div class="value">linkedin.com/in/adolforopeza</div>
+          </div>
+        </a>
+
+        <a :href="github" target="_blank" class="contact-item-full">
+          <i class="fab fa-github"></i>
+          <div class="contact-text">
+            <div class="label" x-text="t.contact.githubLabel"></div>
+            <div class="value">github.com/adolforopeza</div>
+          </div>
+        </a>
+
+        <div class="contact-item-full">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="contact-text">
+            <div class="label" x-text="t.contact.locationLabel"></div>
+            <div class="value" x-text="location"></div>
+          </div>
+        </div>
+
+        <div class="contact-item-full">
+          <i class="fas fa-clock"></i>
+          <div class="contact-text">
+            <div class="label" x-text="t.contact.availability"></div>
+            <div class="value" x-text="t.contact.immediate"></div>
+          </div>
+        </div>
+      </div>
+
+      <form class="form-card"
+            :action="formUrl"
+            method="POST"
+            target="_blank"
+            @submit="formSubmit">
+        <h3 x-text="t.contact.formTitle"></h3>
+        <p class="form-subtitle" x-text="t.contact.formSubtitle"></p>
+
+        <div class="form-group">
+          <label class="form-label" x-text="t.contact.nameField"></label>
+          <input type="text" name="entry.1" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" x-text="t.contact.emailField"></label>
+          <input type="email" name="entry.2" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" x-text="t.contact.companyField"></label>
+          <input type="text" name="entry.3" class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" x-text="t.contact.subjectField"></label>
+          <input type="text" name="entry.4" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" x-text="t.contact.messageField"></label>
+          <textarea name="entry.5" class="form-textarea" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <i class="fas fa-paper-plane"></i>
+          <span x-text="t.contact.submit"></span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; <span x-text="new Date().getFullYear()"></span> Adolfo Oropeza. <span x-text="t.footer.rights"></span></p>
+  </footer>
+
+  <!-- Experience Modal -->
+  <template x-if="modalExp">
+    <div class="modal" @click.self="closeModal()">
+      <div class="modal-content">
+        <button class="modal-close" @click="closeModal()">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2 x-text="modalExp.company"></h2>
+        <p class="exp-role" x-text="modalExp.role"></p>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.9rem;">
+          <span><i class="fas fa-calendar-alt" style="color: var(--primary); margin-right: 6px;"></i><span x-text="modalExp.dates"></span></span>
+          <span><i class="fas fa-map-marker-alt" style="color: var(--primary); margin-right: 6px;"></i><span x-text="modalExp.location"></span></span>
+        </p>
+        <ul>
+          <template x-for="(point, pIdx) in modalExp.points" :key="pIdx">
+            <li x-text="point"></li>
+          </template>
+        </ul>
+        <div class="exp-tags" style="margin-top: 2rem;">
+          <template x-for="(tag, tIdx) in modalExp.tags" :key="tIdx">
+            <span class="skill-tag" x-text="tag"></span>
+          </template>
+        </div>
+      </div>
+    </div>
+  </template>
+
+</div>
+
+</body>
+</html>

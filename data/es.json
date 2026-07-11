@@ -1,0 +1,231 @@
+{
+  "core": {
+    "role": "Full Stack PHP Developer, Magento Specialist",
+    "location": "Puerto la Cruz, Anzoátegui, Venezuela",
+    "summary": "Desarrollador Full Stack con más de 10 años de experiencia en PHP y Magento. Especialista en e-commerce, mantenimiento evolutivo y correctivo, implementación de Clean Code, PSR, y trabajo colaborativo en equipos ágiles distribuidos globalmente.",
+    "linkedin": "https://linkedin.com/in/adolforopeza",
+    "github": "https://github.com/adolforopeza",
+    "education": "TSU en Informática",
+    "languages": "Español / Inglés B2",
+    "specialty": "PHP / Magento 2",
+    "total_years_exp_in_mage": 0,
+    "total_years_exp_in_php": 0,
+    "dev_php_since": 2009,
+    "dev_mage_since": 2017,
+    "profile": "Con más de una década desarrollando aplicaciones web, me he especializado en Magento 2, donde he liderado migraciones, integraciones complejas (ERP, Google Shopping, Odoo) y arquitecturas escalables bajo PSR y MVVM. He trabajado con clientes en Argentina, Perú, Canadá y Venezuela, entregando módulos personalizados, APIs REST/GraphQL y optimizaciones de performance. Mi enfoque combina backend sólido, frontend dinámico y mentalidad DevOps para asegurar calidad, mantenibilidad y resultados medibles en cada entrega."
+  },
+  "expData": [
+    {
+      "company": "Known Online",
+      "role": "Full Stack PHP Developer - Magento",
+      "dates": "03/2025 - 02/2026",
+      "location": "Remoto (Argentina)",
+      "summary": "Desarrollo de módulos custom bajo PSR/MVVM. Integración REST/GraphQL y mantenimiento evolutivo/correctivo con pruebas unitarias continuas.",
+      "points": [
+        "Desarrollé módulos personalizados desde cero bajo PSR y patrón MVVM con arquitectura escalable.",
+        "Ejecuté mantenimiento evolutivo y correctivo mediante Plugins, Preferences y configuraciones admin.",
+        "Implementé componentes backend/frontend: Repositories, Search Criteria, REST/GraphQL, Observers, Cron Jobs, Controllers, UI Components, Knockout.js y LESS.",
+        "Pruebas unitarias con PHPUnit adoptando validación continua y mayor cobertura.",
+        "Gestión bajo Scrum, documentación en Confluence/Jira, control de versiones en Bitbucket con code reviews.",
+        "Módulos base para sincronización bidireccional con Odoo y ERPs externos."
+      ],
+      "tags": ["Magento 2", "MVVM", "PSR", "PHPUnit", "Odoo", "Scrum", "REST/GraphQL"]
+    },
+    {
+      "company": "Stefanini LATAM",
+      "role": "Full Stack PHP Developer - Magento",
+      "dates": "11/2022 - 03/2025",
+      "location": "Remoto (Perú)",
+      "summary": "Sincronización de catálogos masivos, integración ERP/Google Shopping y optimización crítica de rendimiento con Full Page Cache.",
+      "points": [
+        "Sincronicé catálogos masivos integrando con ERP y Google Shopping vía módulos Shipping/Payment consumiendo APIs externas.",
+        "Módulos full stack con Plugins, Observers, Webhooks, Cron Jobs y Preferences; importación/exportación y gestión de URLs/catálogos con queries optimizadas.",
+        "Lideré optimización de rendimiento en Checkout, Catalog Product View y Product Search implementando estrategias avanzadas de caching (FPC).",
+        "Refactoricé módulos legacy eliminando anti-patrón Object Manager y optimizando queries redundantes bajo Clean Code/PSR.",
+        "Documenté arquitectura en Confluence, impartí cursos internos para transferencia de conocimiento."
+      ],
+      "tags": ["Performance", "FPC", "Google Shopping", "Refactoring", "Jira"]
+    },
+    {
+      "company": "Logos Corp",
+      "role": "Full Stack PHP Developer - Magento",
+      "dates": "09/2021 - 11/2022",
+      "location": "Remoto (Venezuela)",
+      "summary": "Integración bidireccional Magento 2 ↔ Odoo. Diseño de APIs REST/GraphQL y modelos EAV personalizados.",
+      "points": [
+        "Desarrollé integración bidireccional Magento 2 ↔ Odoo garantizando consistencia de información comercial.",
+        "Diseñé esquemas REST/GraphQL asegurando interoperabilidad, seguridad y escalabilidad.",
+        "Implementé modelos EAV personalizados optimizando la estructura MySQL.",
+        "Creé módulos para Custom ProductTypes y webhooks asíncronos para actualización automática de órdenes.",
+        "Backend con grillas de reportes de ventas y exportación a Excel; documentación centralizada en Confluence."
+      ],
+      "tags": ["Odoo", "API REST", "GraphQL", "EAV", "Custom ProductTypes"]
+    },
+    {
+      "company": "APD Printing",
+      "role": "Full Stack PHP Magento & DevOps",
+      "dates": "10/2016 - 09/2021",
+      "location": "Remoto (Canadá)",
+      "summary": "Liderazgo de migración M1→M2, desarrollo de integraciones logísticas y administración DevOps en Linode.",
+      "points": [
+        "Lideré migración Magento 1 → Magento 2 diseñando arquitectura limpia bajo PSR y MVVM.",
+        "Desarrollé módulos de logística (FlagShip, Detrack) y pasarelas de pago con APIs REST.",
+        "Construí sistema interno Laravel 5.6 + AngularJS para gestión multi-tienda conectado vía API con Magento.",
+        "Administré infraestructura Linode (CentOS): PHP-FPM, Varnish, Elasticsearch y SSL vía consola.",
+        "Implementé landing pages/catálogos desde Figma usando componentes nativos de Magento 2."
+      ],
+      "tags": ["Migration", "DevOps", "Linode", "Laravel", "AngularJS", "Varnish"]
+    },
+    {
+      "company": "SHA de Venezuela C.A.",
+      "role": "Full Stack PHP Developer",
+      "dates": "05/2013 - 10/2016",
+      "location": "Presencial (Venezuela)",
+      "summary": "Desarrollo de CRM personalizado, integraciones REST con WordPress y optimización de infraestructura Linux.",
+      "points": [
+        "CRM personalizado en Vanilla PHP (PSR/MVC) + MySQL + AngularJS, automatizando gestión de clientes.",
+        "Aplicación standalone Laravel 4 para validación de certificados integrada vía API JSON con WordPress corporativo.",
+        "Optimicé servidores locales y hosting web ejecutando tuning Linux y mantenimiento preventivo.",
+        "Documenté administración de sistemas y guías de onboarding; GitHub para control de versiones."
+      ],
+      "tags": ["CRM", "AngularJS", "Laravel 4", "Linux", "WordPress"]
+    },
+    {
+      "company": "Grupo Alma",
+      "role": "Full Stack PHP & SysAdmin",
+      "dates": "04/2012 - 05/2013",
+      "location": "Presencial (Venezuela)",
+      "summary": "Implementación Profit Plus, migración Excel/MSSQL y desarrollo de APIs de facturación con WordPress.",
+      "points": [
+        "Lideré implementación de sistemas Profit Plus Administrativos, Contabilidad y RRHH.",
+        "Creé solución Vanilla PHP migrando hojas Excel y entornos MSSQL para actualizar inventarios/productos en Profit Plus.",
+        "Desarrollé API de facturación con PHP/MySQL recibiendo JSON y generando reportes web.",
+        "Creé módulos custom WordPress y actualicé sitios manteniéndolos seguros."
+      ],
+      "tags": ["Profit Plus", "MSSQL", "API JSON", "WordPress", "Excel"]
+    },
+    {
+      "company": "MJ Ingeniería C.A.",
+      "role": "PHP Developer",
+      "dates": "10/2009 - 03/2012",
+      "location": "Presencial (Venezuela)",
+      "summary": "Administración WordPress, mantenimiento Linux y herramientas internas PHP/MySQL para gestión LAN.",
+      "points": [
+        "Administré sitio web y desarrollé módulos custom en WordPress.",
+        "Mantenimiento de servidor Linux local.",
+        "Aplicación PHP/MySQL para organizar proyectos/documentos accedida desde la red LAN."
+      ],
+      "tags": ["PHP", "MySQL", "WordPress", "Linux", "GitHub"]
+    }
+  ],
+  "projectsData": [
+    {
+      "icon": "fas fa-shopping-cart",
+      "title": "CustomerPartner for Magento 2",
+      "description": "Módulo nativo para gestión de URLs personalizadas por cliente. Arquitectura MVVM bajo estándares PSR con administración multi-store.",
+      "tech": ["Magento 2", "MVVM", "PSR", "MySQL"]
+    },
+    {
+      "icon": "fas fa-broom",
+      "title": "LogCleaner for Magento 2",
+      "description": "Herramienta de administración para backup y rotación automatizada de logs. Reduce la sobrecarga de servidores mediante tareas programadas.",
+      "tech": ["Magento 2", "Cron Jobs", "Shell", "UI Components"]
+    },
+    {
+      "icon": "fas fa-network-wired",
+      "title": "DSR - Management Web App",
+      "description": "Aplicación fullstack para gestión centralizada de entornos Magento 1 y 2 vía APIs REST/GraphQL, con monitoreo unificado.",
+      "tech": ["REST", "GraphQL", "Full Stack", "APIs"]
+    },
+    {
+      "icon": "fas fa-user-tie",
+      "title": "SHA APP - CRM System",
+      "description": "CRM personalizado para gestión de clientes, cursos y planificación de proyectos con interfaz dinámica AngularJS.",
+      "tech": ["PHP", "MySQL", "AngularJS", "MVC"]
+    },
+    {
+      "icon": "fas fa-certificate",
+      "title": "Validación de Certificados",
+      "description": "Microservicio PHP para verificación en tiempo real de credenciales expuesto mediante API REST integrada con WordPress corporativo.",
+      "tech": ["PHP", "REST API", "WordPress", "Laravel 4"]
+    },
+    {
+      "icon": "fas fa-code-branch",
+      "title": "Open Source Contributions",
+      "description": "Contribuciones a la comunidad open source, documentación técnica y herramientas para desarrolladores Magento/PHP.",
+      "tech": ["Open Source", "Documentation", "Git"]
+    }
+  ],
+  "skillsCategories": [
+    {
+      "icon": "fas fa-server",
+      "title": "Backend",
+      "items": ["PHP 8.X", "Magento 1 & 2", "Adobe Commerce", "MySQL", "REST/GraphQL APIs", "Symfony", "Laravel"]
+    },
+    {
+      "icon": "fas fa-palette",
+      "title": "Frontend",
+      "items": ["JavaScript", "Knockout.js", "UI Components", "LESS/SASS", "AngularJS", "PWA Studio", "jQuery"]
+    },
+    {
+      "icon": "fas fa-cloud",
+      "title": "DevOps & Tools",
+      "items": ["Git / GitHub / Bitbucket", "Composer", "Linux SysAdmin", "Varnish / FPC", "Elasticsearch", "Docker"]
+    },
+    {
+      "icon": "fas fa-tasks",
+      "title": "Metodologías",
+      "items": ["Scrum / Agile", "Clean Code / PSR", "TDD / PHPUnit", "Jira / Confluence"]
+    }
+  ],
+  "t": {
+    "nav": { "home": "Inicio", "about": "Sobre Mí", "experience": "Experiencia", "projects": "Proyectos", "contact": "Contacto" },
+    "home": {
+      "badge": "Disponible para nuevos proyectos",
+      "cta": { "contact": "Contáctame", "cv": "Descargar CV" }
+    },
+    "about": {
+      "title": "Sobre Mí",
+      "subtitle": "Más de una década construyendo soluciones web escalables",
+      "sidebarTitle": "Información Personal",
+      "name": "Nombre",
+      "location": "Ubicación",
+      "expYearsPhp": "Total Exp. PHP",
+      "expYearsMage": "Total Exp. Magento",
+      "specialty": "Especialidad",
+      "education": "Educación",
+      "langs": "Idiomas",
+      "profileTitle": "Perfil Profesional",
+      "skillsTitle": "Stack Tecnológico"
+    },
+    "exp": {
+      "title": "Experiencia Profesional",
+      "subtitle": "Una trayectoria construida sobre resultados medibles y colaboración global"
+    },
+    "proj": {
+      "title": "Proyectos Destacados",
+      "subtitle": "Una selección de herramientas y módulos que he desarrollado"
+    },
+    "contact": {
+      "title": "Contacto",
+      "subtitle": "¿Tienes un proyecto en mente? Conversemos.",
+      "infoTitle": "Información de Contacto",
+      "formTitle": "Envíame un mensaje",
+      "formSubtitle": "Este formulario abre Google Forms en una nueva ventana",
+      "nameField": "Nombre completo",
+      "emailField": "Correo electrónico",
+      "companyField": "Empresa (opcional)",
+      "subjectField": "Asunto",
+      "messageField": "Mensaje",
+      "submit": "Enviar vía Google Forms",
+      "emailLabel": "Email",
+      "phoneLabel": "Teléfono",
+      "linkedinLabel": "LinkedIn",
+      "githubLabel": "GitHub",
+      "locationLabel": "Ubicación",
+      "availability": "Disponibilidad",
+      "immediate": "Inmediata para contratos remotos"
+    },
+    "footer": { "rights": "Todos los derechos reservados." }
+  }
+}
