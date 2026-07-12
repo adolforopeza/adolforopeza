@@ -7,8 +7,6 @@ document.addEventListener('alpine:init', () => {
         modalExp: null,
         isLoaded: false,
         langCache: {},
-
-        formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdummyformid/viewform?embedded=true',
         // Estructura inicial para evitar errores de "undefined"
         data: {
             core: {},
