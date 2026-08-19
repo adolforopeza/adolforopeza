@@ -19,7 +19,7 @@ Actualmente explorando el desarrollo de videojuegos con Godot 4
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
 ---
-<img height="180em" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=adolforopeza&layout=compact&langs_count=7&theme=dark"/>
+<img height="180em" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=adolforopeza&layout=compact&langs_count=50&theme=dark"/>
 
 ---
 
