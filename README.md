@@ -22,20 +22,11 @@ Actualmente explorando el desarrollo de videojuegos con Godot 4
 <img height="180em" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=adolforopeza&layout=compact&langs_count=50&theme=dark&cache_seconds=1&card_width=450"/>
 
 <!--START_SECTION:langs-->
-### 📊 Estadísticas de Lenguajes (Privados + Públicos)
-
-- **PHP**: 56.38%
-- **HTML**: 15.86%
-- **JavaScript**: 15.16%
-- **Less**: 10.88%
-- **CSS**: 1.61%
-- **Shell**: 0.06%
-- **Vue**: 0.02%
-- **SCSS**: 0.01%
-- **PLpgSQL**: 0.01%
-- **Hack**: 0.00%
-- **VCL**: 0.00%
-
+![PHP](https://img.shields.io/badge/PHP-56.37%25-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![HTML](https://img.shields.io/badge/HTML-15.82%25-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-15.12%25-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Less](https://img.shields.io/badge/Less-10.85%25-1D365D?style=for-the-badge&logo=less&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-1.63%25-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 <!--END_SECTION:langs-->
 ---
 
