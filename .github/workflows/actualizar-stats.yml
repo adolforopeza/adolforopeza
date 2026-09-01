@@ -1,0 +1,44 @@
+name: Actualizar lenguajes privados
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Se ejecuta automáticamente una vez al día
+  workflow_dispatch: # Permite ejecutarlo manualmente cuando quieras
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Calcular bytes de lenguajes
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          python -c '
+          import os, requests
+          headers = {"Authorization": f"Bearer {os.environ[\"GH_TOKEN\"]}"}
+          response = requests.get("https://api.github.com/user/repos?visibility=private&per_page=100", headers=headers)
+          repos = response.json()
+          
+          langs = {}
+          for repo in repos:
+              if not repo.get("fork", False):
+                  lang_url = repo["languages_url"]
+                  lang_res = requests.get(lang_url, headers=headers)
+                  if lang_res.status_code == 200:
+                      for lang, bytes_count in lang_res.json().items():
+                          langs[lang] = langs.get(lang, 0) + bytes_count
+                          
+          total = sum(langs.values())
+          if total > 0:
+              print("--- PORCENTAJES REALES ---")
+              for lang, b in sorted(langs.items(), key=lambda x: x[1], reverse=True):
+                  print(f"{lang}: {(b/total)*100:.2f}%")
+          '
