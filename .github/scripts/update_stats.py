@@ -44,7 +44,7 @@ def get_all_repositories():
     repos = []
     page = 1
     while True:
-        url = f"https://api.github.com/users/{GITHUB_USER}/repos?per_page=100&page={page}&type=all"
+        url = f"https://api.github.com/user/repos?visibility=all&affiliations=owner,collaborator,organization_member&per_page=1000&page=1"
         response = requests.get(url, headers=HEADERS)
         if response.status_code != 200:
             break
