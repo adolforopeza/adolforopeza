@@ -2,8 +2,11 @@ name: Actualizar lenguajes privados
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Se ejecuta automáticamente una vez al día
-  workflow_dispatch: # Permite ejecutarlo manualmente cuando quieras
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -17,7 +20,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Calcular bytes de lenguajes
+      - name: Calcular e inyectar porcentajes
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
@@ -32,7 +35,6 @@ jobs:
                   repos = json.loads(response.read().decode())
           except Exception as e:
               repos = []
-              print(f"Error al listar repositorios: {e}")
 
           langs = {}
           for repo in repos:
@@ -50,10 +52,36 @@ jobs:
                               
           total = sum(langs.values())
           if total > 0:
-              print("--- PORCENTAJES REALES ---")
+              stats_md = "### 📊 Estadísticas de Lenguajes (Privados + Públicos)\n\n"
               for lang, b in sorted(langs.items(), key=lambda x: x[1], reverse=True):
                   pct = (b / total) * 100
-                  print(f"{lang}: {pct:.2f}%")
-          else:
-              print("No se encontraron lenguajes o repositorios accesibles.")
+                  stats_md += f"- **{lang}**: {pct:.2f}%\n"
+              
+              # Leer README actual
+              if os.path.exists("README.md"):
+                  with open("README.md", "r", encoding="utf-8") as f:
+                      content = f.read()
+              else:
+                  content = ""
+              
+              start_marker = "<!--START_SECTION:langs-->"
+              end_marker = "<!--END_SECTION:langs-->"
+              
+              if start_marker in content and end_marker in content:
+                  parts = content.split(start_marker)
+                  pre = parts[0]
+                  post = parts[1].split(end_marker)[1]
+                  new_content = pre + start_marker + "\n" + stats_md + "\n" + end_marker + post
+              else:
+                  new_content = content + f"\n\n{start_marker}\n{stats_md}\n{end_marker}\n"
+                  
+              with open("README.md", "w", encoding="utf-8") as f:
+                  f.write(new_content)
           '
+
+      - name: Configurar Git y subir cambios
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: actualizar estadísticas de lenguajes privados" && git push)
