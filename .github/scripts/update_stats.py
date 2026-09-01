@@ -44,15 +44,21 @@ def get_all_repositories():
     repos = []
     page = 1
     while True:
+        # Cambiado de /users/{user}/repos a /user/repos para listar todos (públicos y privados del token)
         url = f"https://api.github.com/user/repos?visibility=all&affiliations=owner,collaborator,organization_member&per_page=1000&page=1"
         response = requests.get(url, headers=HEADERS)
+        
         if response.status_code != 200:
+            print(f"Error al obtener repositorios: {response.status_code} - {response.text}")
             break
+            
         data = response.json()
         if not data:
             break
         repos.extend(data)
         page += 1
+    
+    print(f"Total de repositorios obtenidos: {len(repos)}")
     return repos
 
 def main():
