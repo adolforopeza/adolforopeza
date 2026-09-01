@@ -1,17 +1,15 @@
-name: Actualizar Insignias de Lenguajes
+name: Actualizar lenguajes privados
+
 on:
   schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
-
-permissions:
-  contents: write
+    - cron: "0 0 * * *" # Se ejecuta automáticamente una vez al día
+  workflow_dispatch: # Permite ejecutarlo manualmente cuando quieras
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout del repositorio
+      - name: Descargar repositorio
         uses: actions/checkout@v4
 
       - name: Configurar Python
@@ -19,33 +17,22 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Generar insignias dinámicas y actualizar README
+      - name: Calcular bytes de lenguajes
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           python3 -c '
-          import os
-          import json
-          import urllib.request
-
+          import os, json, urllib.request
           token = os.environ.get("GH_TOKEN")
           headers = {"Authorization": f"Bearer {token}", "User-Agent": "GitHub-Action"}
-
-          repos = []
-          page = 1
-          while page <= 3:
-              req = urllib.request.Request(f"https://api.github.com/user/repos?visibility=all&per_page=100&page={page}", headers=headers)
-              try:
-                  with urllib.request.urlopen(req) as response:
-                      data = json.loads(response.read().decode())
-                      if not data:
-                          break
-                      repos.extend(data)
-                      if len(data) < 100:
-                          break
-              except Exception:
-                  break
-              page += 1
+          
+          req = urllib.request.Request("https://api.github.com/user/repos?visibility=private&per_page=100", headers=headers)
+          try:
+              with urllib.request.urlopen(req) as response:
+                  repos = json.loads(response.read().decode())
+          except Exception as e:
+              repos = []
+              print(f"Error al listar repositorios: {e}")
 
           langs = {}
           for repo in repos:
@@ -60,77 +47,13 @@ jobs:
                                   langs[lang] = langs.get(lang, 0) + bytes_count
                       except Exception:
                           pass
-
+                              
           total = sum(langs.values())
-          if total <= 0:
-              exit(0)
-
-          sorted_langs = sorted(langs.items(), key=lambda x: x[1], reverse=True)
-
-          config = {
-              "PHP": {"color": "777BB4", "logo": "php", "color_text": "white"},
-              "JavaScript": {"color": "F7DF1E", "logo": "javascript", "color_text": "black"},
-              "HTML": {"color": "E34F26", "logo": "html5", "color_text": "white"},
-              "CSS": {"color": "1572B6", "logo": "css3", "color_text": "white"},
-              "SQL": {"color": "4479A1", "logo": "mysql", "color_text": "white"},
-              "Shell": {"color": "89E051", "logo": "gnu-bash", "color_text": "black"},
-              "Python": {"color": "3572A5", "logo": "python", "color_text": "white"},
-              "TypeScript": {"color": "3178C6", "logo": "typescript", "color_text": "white"},
-              "Vue": {"color": "41B883", "logo": "vuedotjs", "color_text": "white"},
-              "SCSS": {"color": "C6538C", "logo": "sass", "color_text": "white"},
-              "Less": {"color": "1D365D", "logo": "less", "color_text": "white"},
-              "GDScript": {"color": "355570", "logo": "godotengine", "color_text": "white"},
-              "C++": {"color": "00599C", "logo": "cplusplus", "color_text": "white"},
-              "Rust": {"color": "DEA584", "logo": "rust", "color_text": "black"},
-              "Dockerfile": {"color": "2496ED", "logo": "docker", "color_text": "white"},
-              "Makefile": {"color": "42749B", "logo": "gnu", "color_text": "white"}
-          }
-
-          badge_lines = []
-          for lang, b in sorted_langs:
-              pct = (b / total) * 100
-              if pct < 0.1:
-                  continue
-              
-              cfg = config.get(lang, {"color": "555555", "logo": "code", "color_text": "white"})
-              c_hex = cfg["color"]
-              c_logo = cfg["logo"]
-              c_text = cfg["color_text"]
-              
-              label_name = lang.replace("+", "%2B").replace("#", "%23")
-              badge_url = f"https://img.shields.io/badge/{label_name}-{pct:.2f}%25-{c_hex}?style=for-the-badge&logo={c_logo}&logoColor={c_text}"
-              badge_lines.append(f"![{lang}]({badge_url})")
-
-          badges_content = "\n".join(badge_lines)
-
-          if os.path.exists("README.md"):
-              with open("README.md", "r", encoding="utf-8") as f:
-                  content = f.read()
+          if total > 0:
+              print("--- PORCENTAJES REALES ---")
+              for lang, b in sorted(langs.items(), key=lambda x: x[1], reverse=True):
+                  pct = (b / total) * 100
+                  print(f"{lang}: {pct:.2f}%")
           else:
-              content = ""
-
-          start_marker = "<!--START_SECTION:langs-->"
-          end_marker = "<!--END_SECTION:langs-->"
-
-          if start_marker in content and end_marker in content:
-              parts = content.split(start_marker)
-              pre = parts[0]
-              post = parts[1].split(end_marker)[1]
-              new_content = pre + start_marker + "\n" + badges_content + "\n" + end_marker + post
-          else:
-              new_content = content + f"\n\n{start_marker}\n{badges_content}\n{end_marker}\n"
-
-          with open("README.md", "w", encoding="utf-8") as f:
-              f.write(new_content)
+              print("No se encontraron lenguajes o repositorios accesibles.")
           '
-
-      - name: Limpiar archivo obsoleto si existe
-        run: rm -f languages_card.png
-
-      - name: Commit y Push de cambios
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git rm --ignore-unmatch languages_card.png
-          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: actualizar insignias dinámicas con porcentajes reales" && git push)
