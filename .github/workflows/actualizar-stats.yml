@@ -1,5 +1,4 @@
-name: Actualizar lenguajes privados
-
+name: Actualizar Estadísticas de Lenguajes
 on:
   schedule:
     - cron: "0 0 * * *"
@@ -12,28 +11,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Descargar repositorio
+      - name: Checkout del repositorio
         uses: actions/checkout@v4
 
       - name: Configurar Python
-        uses: actions/setup-python@v5
+        uses: setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Calcular e inyectar porcentajes
+      - name: Generar SVG y Actualizar README
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           python3 -c '
           import os, json, urllib.request
+
           token = os.environ.get("GH_TOKEN")
           headers = {"Authorization": f"Bearer {token}", "User-Agent": "GitHub-Action"}
-          
+
           req = urllib.request.Request("https://api.github.com/user/repos?visibility=private&per_page=100", headers=headers)
           try:
               with urllib.request.urlopen(req) as response:
                   repos = json.loads(response.read().decode())
-          except Exception as e:
+          except Exception:
               repos = []
 
           langs = {}
@@ -49,39 +49,72 @@ jobs:
                                   langs[lang] = langs.get(lang, 0) + bytes_count
                       except Exception:
                           pass
-                              
+
           total = sum(langs.values())
           if total > 0:
-              stats_md = "### 📊 Estadísticas de Lenguajes (Privados + Públicos)\n\n"
-              for lang, b in sorted(langs.items(), key=lambda x: x[1], reverse=True):
-                  pct = (b / total) * 100
-                  stats_md += f"- **{lang}**: {pct:.2f}%\n"
+              sorted_langs = sorted(langs.items(), key=lambda x: x[1], reverse=True)
               
-              # Leer README actual
+              colors = {
+                  "Shell": "#89e051", "Python": "#3572A5", "PHP": "#4F5D95",
+                  "JavaScript": "#f1e05a", "HTML": "#e34c26", "CSS": "#563d7c",
+                  "C++": "#f34b7d", "Rust": "#dea584", "Godot": "#ffffffff"
+              }
+              default_color = "#cccccc"
+
+              svg_items = []
+              legend_items = []
+              acc_percent = 0.0
+              x_offset = 0
+
+              for lang, b in sorted_langs:
+                  pct = (b / total) * 100
+                  if pct < 0.1:
+                      continue
+                  color = colors.get(lang, default_color)
+                  
+                  # Barra SVG
+                  width = (pct / 100) * 300
+                  svg_items.append(f"<rect x=\"{x_offset}\" y=\"0\" width=\"{width}\" height=\"8\" fill=\"{color}\" rx=\"2\" />")
+                  x_offset += width
+
+                  # Leyenda
+                  legend_items.append(f"""
+                  <div style="display: flex; align-items: center; margin-bottom: 6px; font-size: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; color: #c9d1d9;">
+                      <span style="width: 12px; height: 12px; background-color: {color}; border-radius: 50%; display: inline-block; margin-right: 8px;"></span>
+                      <span style="flex: 1; font-weight: 600;">{lang}</span>
+                      <span style="color: #8b949e;">{pct:.2f}%</span>
+                  </div>
+                  """)
+
+              svg_bar = f"""<svg width="300" height="8" viewBox="0 0 300 8" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 4px; overflow: hidden; margin-bottom: 16px;">{"".join(svg_items)}</svg>"""
+              legend_grid = f"""<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 16px; width: 300px;">{"".join(legend_items)}</div>"""
+              
+              card_html = f"""<div style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 16px; width: fit-content;">\n  <h4 style="margin: 0 0 12px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; color: #c9d1d9; font-size: 14px; font-weight: 600;">Most Used Languages (Privados + Públicos)</h4>\n  {svg_bar}\n  {legend_grid}\n</div>"""
+
               if os.path.exists("README.md"):
                   with open("README.md", "r", encoding="utf-8") as f:
                       content = f.read()
               else:
                   content = ""
-              
+
               start_marker = "<!--START_SECTION:langs-->"
               end_marker = "<!--END_SECTION:langs-->"
-              
+
               if start_marker in content and end_marker in content:
                   parts = content.split(start_marker)
                   pre = parts[0]
                   post = parts[1].split(end_marker)[1]
-                  new_content = pre + start_marker + "\n" + stats_md + "\n" + end_marker + post
+                  new_content = pre + start_marker + "\n" + card_html + "\n" + end_marker + post
               else:
-                  new_content = content + f"\n\n{start_marker}\n{stats_md}\n{end_marker}\n"
-                  
+                  new_content = content + f"\n\n{start_marker}\n{card_html}\n{end_marker}\n"
+
               with open("README.md", "w", encoding="utf-8") as f:
                   f.write(new_content)
           '
 
-      - name: Configurar Git y subir cambios
+      - name: Commit y Push de cambios
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
-          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: actualizar estadísticas de lenguajes privados" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: actualizar tarjeta de lenguajes" && git push)
