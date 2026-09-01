@@ -99,7 +99,11 @@ jobs:
 
           img.save("languages_card.png", "PNG")
           EOF
-          python3 generate_card.py
+
+      - name: Ejecutar script generador
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: python3 generate_card.py
 
       - name: Actualizar README.md
         run: |
