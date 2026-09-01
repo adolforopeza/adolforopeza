@@ -83,7 +83,7 @@ def main():
         color = COLORS.get(lang, "777BB4") # Color por defecto si no existe en el diccionario
         pct_str = f"{percentage:.2f}%".replace("%", "%25")
         badge_url = f"https://img.shields.io/badge/{lang}-{pct_str}-{color}?style=for-the-badge&logo={lang.lower()}&logoColor=white"
-        markdown_badges.f(f"![{lang}]({badge_url})")
+        markdown_badges.append(f"![{lang}]({badge_url})")
 
     # Inyectar en README.md entre marcas específicas
     with open("README.md", "r", encoding="utf-8") as f:
