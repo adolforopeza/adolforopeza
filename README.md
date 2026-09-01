@@ -22,14 +22,11 @@ Actualmente explorando el desarrollo de videojuegos con Godot 4
 <img height="180em" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=adolforopeza&layout=compact&langs_count=50&theme=dark&cache_seconds=1&card_width=450"/>
 
 <!--START_SECTION:langs-->
-![PHP](https://img.shields.io/badge/PHP-56.37%-777BB4?style=for-the-badge&logo=php&logoColor=white)
-![Magento](https://img.shields.io/badge/Magento-56.37%-E76F00?style=for-the-badge&logo=magento&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-15.82%-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1.63%-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-0.09%-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-15.12%-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![PHP](https://img.shields.io/badge/PHP-56.37%25-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![HTML](https://img.shields.io/badge/HTML-15.82%25-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-15.12%25-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Less](https://img.shields.io/badge/Less-10.85%25-1D365D?style=for-the-badge&logo=less&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-1.63%25-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 <!--END_SECTION:langs-->
 ---
 
