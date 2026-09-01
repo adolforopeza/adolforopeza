@@ -21,6 +21,8 @@ Actualmente explorando el desarrollo de videojuegos con Godot 4
 ---
 <img height="180em" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=adolforopeza&layout=compact&langs_count=50&theme=dark&cache_seconds=1&card_width=450"/>
 
+<!--START_SECTION:langs-->
+<!--END_SECTION:langs-->
 ---
 
 ### 📂 Proyectos Destacados
