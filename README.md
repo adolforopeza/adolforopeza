@@ -22,6 +22,9 @@ Actualmente explorando el desarrollo de videojuegos con Godot 4
 <img height="180em" src="https://github-readme-stats-fast.vercel.app/api/top-langs/?username=adolforopeza&layout=compact&langs_count=50&theme=dark&cache_seconds=1&card_width=450"/>
 
 <!--START_SECTION:langs-->
+<p align="center">
+  <img src="languages_card.png" alt="Most Used Languages">
+</p>
 <!--END_SECTION:langs-->
 ---
 
@@ -37,19 +40,3 @@ A continuación, se detallan algunos de los repositorios más relevantes de mi p
 ---
 
 
-<!--START_SECTION:langs-->
-### 📊 Estadísticas de Lenguajes (Privados + Públicos)
-
-- **PHP**: 56.38%
-- **HTML**: 15.86%
-- **JavaScript**: 15.16%
-- **Less**: 10.88%
-- **CSS**: 1.61%
-- **Shell**: 0.06%
-- **Vue**: 0.02%
-- **SCSS**: 0.01%
-- **PLpgSQL**: 0.01%
-- **Hack**: 0.00%
-- **VCL**: 0.00%
-
-<!--END_SECTION:langs-->
