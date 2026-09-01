@@ -1,118 +1,33 @@
-name: Actualizar Estadísticas de Lenguajes
-
+name: Actualizar Estadisticas de Lenguajes
 on:
   schedule:
-    # Se ejecuta automáticamente todos los días a la medianoche UTC
-    - cron: '0 0 * * *'
-  workflow_dispatch: # Permite ejecución manual desde la pestaña Actions
+    - cron: '0 */6 * * *' # Cada 6 horas
+  workflow_dispatch:
 
 jobs:
-  update-stats:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Clonar Repositorio
+      - name: Clonar repositorio
         uses: actions/checkout@v4
 
-      - name: Configurar PHP
-        uses: shivammathur/setup-php@v2
+      - name: Configurar Python
+        uses: actions/setup-python@v5
         with:
-          php-version: '8.3'
+          python-version: '3.11'
 
-      - name: Ejecutar Script de Cálculo y Generación de Badges
+      - name: Instalar dependencias
+        run: pip install requests
+
+      - name: Ejecutar script de calculo
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT }} # Token con acceso a repos privados y públicos
-          GH_USER: 'adolforopeza'
-        run: |
-          php -r '
-          $token = getenv("GH_TOKEN");
-          $user = getenv("GH_USER");
-          
-          $opts = [
-              "http" => [
-                  "method" => "GET",
-                  "header" => "User-Agent: PHP-Script\r\nAuthorization: Bearer " . $token
-              ]
-          ];
-          $context = stream_context_create($opts);
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_USER: "adolforopeza"
+        run: python .github/scripts/update_stats.py
 
-          // 1. Obtener lista de todos los repositorios del usuario (públicos y privados)
-          $page = 1;
-          $allRepos = [];
-          do {
-              $url = "https://api.github.com/users/{$user}/repos?per_page=100&page={$page}";
-              $response = @file_get_contents($url, false, $context);
-              if ($response === false) break;
-              $repos = json_decode($response, true);
-              if (empty($repos)) break;
-              foreach ($repos as $repo) {
-                  $allRepos[] = $repo["name"];
-              }
-              $page++;
-          } while (count($repos) == 100);
-
-          // 2. Obtener lenguajes de cada repositorio
-          $globalLanguages = [];
-          $totalBytesGlobal = 0;
-
-          foreach ($allRepos as $repoName) {
-              $langUrl = "https://api.github.com/repos/{$user}/{$repoName}/languages";
-              $langRes = @file_get_contents($langUrl, false, $context);
-              if ($langRes === false) continue;
-              $languages = json_decode($langRes, true);
-              
-              if (is_array($languages)) {
-                  foreach ($languages as $lang => $bytes) {
-                      $globalLanguages[$lang] = ($globalLanguages[$lang] ?? 0) + $bytes;
-                      $totalBytesGlobal += $bytes;
-                  }
-              }
-          }
-
-          // 3. Calcular porcentajes
-          $percentages = [];
-          foreach ($globalLanguages as $lang => $bytes) {
-              $percentages[$lang] = ($totalBytesGlobal > 0) ? ($bytes / $totalBytesGlobal) * 100 : 0;
-          }
-          arsort($percentages);
-
-          // Colores oficiales de identidad de lenguajes para shields.io
-          $shieldColors = [
-              "PHP" => "777BB4",
-              "JavaScript" => "F7DF1E",
-              "HTML" => "E34C26",
-              "CSS" => "1572B6",
-              "Less" => "1D365D",
-              "Shell" => "4EAA25",
-              "GDScript" => "355570",
-              "Vue" => "41B883",
-              "SCSS" => "CC6699",
-              "PLpgSQL" => "336791",
-              "VCL" => "1B887A",
-              "Hack" => "878787"
-          ];
-
-          // 4. Generar Markdown con Badges de Shields.io
-          $markdown = "### Mis Estadísticas de Lenguajes (Global)\n\n";
-          foreach ($percentages as $lang => $pct) {
-              $formattedPct = number_format($pct, 2);
-              $color = $shieldColors[$lang] ?? "000000";
-              $logo = strtolower($lang);
-              // Limpiar nombres especiales para los logos de shields.io si es necesario
-              if ($lang === "PLpgSQL") $logo = "postgresql";
-              if ($lang === "VCL") $logo = "varnish";
-              
-              $badgeUrl = "https://img.shields.io/badge/" . urlencode($lang) . "-" . $formattedPct . "%25-" . $color . "?style=for-the-badge&logo=" . $logo . "&logoColor=white";
-              $markdown .= "![" . $lang . "](" . $badgeUrl . ") ";
-          }
-
-          // Guardar en un archivo Markdown o insertar en el README principal
-          file_put_contents("stats-output.md", $markdown);
-          echo "Estadísticas actualizadas con éxito.\n";
-          '
-
-      - name: Commit y Push de cambios al repositorio
+      - name: Commit y Push cambios si existen
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add stats-output.md
-          git diff --quiet && git diff --cached --quiet || (git commit -m "chore: actualizacion automatica de estadisticas de lenguajes" && git push)
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: actualizar estadisticas de lenguajes" && git push)
