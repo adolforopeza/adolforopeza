@@ -67,7 +67,6 @@ jobs:
 
           sorted_langs = sorted(langs.items(), key=lambda x: x[1], reverse=True)
 
-          # Mapeo de colores y logos estándar para shields.io
           config = {
               "PHP": {"color": "777BB4", "logo": "php", "color_text": "white"},
               "JavaScript": {"color": "F7DF1E", "logo": "javascript", "color_text": "black"},
@@ -94,8 +93,12 @@ jobs:
                   continue
               
               cfg = config.get(lang, {"color": "555555", "logo": "code", "color_text": "white"})
+              c_hex = cfg["color"]
+              c_logo = cfg["logo"]
+              c_text = cfg["color_text"]
+              
               label_name = lang.replace("+", "%2B").replace("#", "%23")
-              badge_url = f"https://img.shields.io/badge/{label_name}-{pct:.2f}%25-{cfg[\"color\"]}?style=for-the-badge&logo={cfg[\"logo\"]}&logoColor={cfg[\"color_text\"]}"
+              badge_url = f"https://img.shields.io/badge/{label_name}-{pct:.2f}%25-{c_hex}?style=for-the-badge&logo={c_logo}&logoColor={c_text}"
               badge_lines.append(f"![{lang}]({badge_url})")
 
           badges_content = "\n".join(badge_lines)
@@ -130,4 +133,4 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
           git rm --ignore-unmatch languages_card.png
-          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: actualizar insignias dinámicas con porcentajes reales de todos los repos" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: actualizar insignias dinámicas con porcentajes reales" && git push)
