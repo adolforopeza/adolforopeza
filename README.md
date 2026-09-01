@@ -33,3 +33,21 @@ A continuación, se detallan algunos de los repositorios más relevantes de mi p
 *   🎮 **[godot-tutorials](https://github.com/adolforopeza/godot-tutorials)**: Una guía de inicio y mis progresos para aprender desarrollo de videojuegos con Godot 4.
 
 ---
+
+
+<!--START_SECTION:langs-->
+### 📊 Estadísticas de Lenguajes (Privados + Públicos)
+
+- **PHP**: 56.38%
+- **HTML**: 15.86%
+- **JavaScript**: 15.16%
+- **Less**: 10.88%
+- **CSS**: 1.61%
+- **Shell**: 0.06%
+- **Vue**: 0.02%
+- **SCSS**: 0.01%
+- **PLpgSQL**: 0.01%
+- **Hack**: 0.00%
+- **VCL**: 0.00%
+
+<!--END_SECTION:langs-->
