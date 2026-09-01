@@ -7,7 +7,7 @@ Actualmente explorando el desarrollo de videojuegos con Godot 4
 
 ---
 <p align="center">
-  <img src="https://github-stats-shields.vercel.app" alt="GitHub Language Stats">
+  <img src="https://adolforopeza-github-stats.vercel.app/" alt="GitHub Language Stats">
 </p>
 
 ### 📂 Proyectos Destacados
