@@ -19,14 +19,117 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Ejecutar script de actualización
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: python3 .github/scripts/update_langs.py
+      - name: Instalar dependencias de imagen
+        run: pip install Pillow
+
+      - name: Crear script generador
+        run: |
+          cat << 'EOF' > generate_card.py
+          import os
+          import json
+          import urllib.request
+          from PIL import Image, ImageDraw, ImageFont
+
+          token = os.environ.get("GH_TOKEN")
+          headers = {"Authorization": f"Bearer {token}", "User-Agent": "GitHub-Action"}
+
+          req = urllib.request.Request("https://api.github.com/user/repos?visibility=private&per_page=100", headers=headers)
+          try:
+              with urllib.request.urlopen(req) as response:
+                  repos = json.loads(response.read().decode())
+          except Exception:
+              repos = []
+
+          langs = {}
+          for repo in repos:
+              if not repo.get("fork", False):
+                  lang_url = repo.get("languages_url")
+                  if lang_url:
+                      lang_req = urllib.request.Request(lang_url, headers=headers)
+                      try:
+                          with urllib.request.urlopen(lang_req) as lang_res:
+                              lang_data = json.loads(lang_res.read().decode())
+                              for lang, bytes_count in lang_data.items():
+                                  langs[lang] = langs.get(lang, 0) + bytes_count
+                      except Exception:
+                          pass
+
+          total = sum(langs.values())
+          if total <= 0:
+              exit(0)
+
+          sorted_langs = sorted(langs.items(), key=lambda x: x[1], reverse=True)[:6]
+
+          colors = {
+              "Shell": (137, 224, 81), "Python": (53, 114, 165), "PHP": (79, 93, 149),
+              "JavaScript": (241, 224, 90), "HTML": (227, 76, 38), "CSS": (86, 61, 124),
+              "C++": (243, 75, 125), "Rust": (222, 165, 132), "Godot": (255, 255, 255)
+          }
+          default_color = (204, 204, 204)
+
+          width, height = 450, 220
+          img = Image.new("RGBA", (width, height), (13, 17, 23, 255))
+          draw = ImageDraw.Draw(img)
+
+          try:
+              font_title = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 14)
+              font_text = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 12)
+          except Exception:
+              font_title = font_text = ImageFont.load_default()
+
+          draw.text((20, 20), "Most Used Languages (Privados + Públicos)", fill=(201, 209, 217), font=font_title)
+
+          y_offset = 60
+          for lang, b in sorted_langs:
+              pct = (b / total) * 100
+              if pct < 0.1:
+                  continue
+              color = colors.get(lang, default_color)
+
+              draw.text((20, y_offset), lang, fill=(201, 209, 217), font=font_text)
+              draw.text((380, y_offset), f"{pct:.1f}%", fill=(139, 148, 158), font=font_text)
+
+              bar_y = y_offset + 18
+              draw.rounded_rectangle([20, bar_y, 430, bar_y + 8], radius=4, fill=(48, 54, 61))
+              fill_width = int(410 * (pct / 100))
+              if fill_width > 0:
+                  draw.rounded_rectangle([20, bar_y, 20 + fill_width, bar_y + 8], radius=4, fill=color)
+
+              y_offset += 32
+
+          img.save("languages_card.png", "PNG")
+          EOF
+          python3 generate_card.py
+
+      - name: Actualizar README.md
+        run: |
+          python3 -c '
+          import os
+          card_md = "<p align=\"center\">\n  <img src=\"languages_card.png\" alt=\"Most Used Languages\">\n</p>"
+          if os.path.exists("README.md"):
+              with open("README.md", "r", encoding="utf-8") as f:
+                  content = f.read()
+          else:
+              content = ""
+
+          start_marker = "<!--START_SECTION:langs-->"
+          end_marker = "<!--END_SECTION:langs-->"
+
+          if start_marker in content and end_marker in content:
+              parts = content.split(start_marker)
+              pre = parts[0]
+              post = parts[1].split(end_marker)[1]
+              new_content = pre + start_marker + "\n" + card_md + "\n" + end_marker + post
+          else:
+              new_content = content + f"\n\n{start_marker}\n{card_md}\n{end_marker}\n"
+
+          with open("README.md", "w", encoding="utf-8") as f:
+              f.write(new_content)
+          '
 
       - name: Commit y Push de cambios
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: actualizar tarjeta de lenguajes" && git push)
+          git add README.md languages_card.png
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: actualizar imagen de lenguajes" && git push)
