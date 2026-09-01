@@ -3,9 +3,9 @@ import json
 import urllib.request
 
 def main():
+    # Obtención segura del token de autenticación de GitHub
     token = os.environ.get("GH_TOKEN")
     if not token:
-        print("Error: GH_TOKEN no está definido.")
         return
 
     headers = {"Authorization": f"Bearer {token}", "User-Agent": "GitHub-Action"}
@@ -14,8 +14,7 @@ def main():
     try:
         with urllib.request.urlopen(req) as response:
             repos = json.loads(response.read().decode())
-    except Exception as e:
-        print(f"Error al obtener repositorios: {e}")
+    except Exception:
         repos = []
 
     langs = {}
@@ -34,7 +33,6 @@ def main():
 
     total = sum(langs.values())
     if total <= 0:
-        print("No se encontraron lenguajes.")
         return
 
     sorted_langs = sorted(langs.items(), key=lambda x: x[1], reverse=True)
@@ -97,8 +95,6 @@ def main():
 
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write(new_content)
-    
-    print("README actualizado correctamente con la tarjeta SVG.")
 
 if __name__ == "__main__":
     main()
