@@ -1,5 +1,4 @@
-name: Actualizar lenguajes privados
-
+name: Actualizar Insignias de Lenguajes
 on:
   schedule:
     - cron: "0 0 * * *"
@@ -12,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Descargar repositorio
+      - name: Checkout del repositorio
         uses: actions/checkout@v4
 
       - name: Configurar Python
@@ -20,15 +19,18 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Calcular e inyectar insignias dinámicas
+      - name: Generar insignias dinámicas y actualizar README
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           python3 -c '
-          import os, json, urllib.request
+          import os
+          import json
+          import urllib.request
+
           token = os.environ.get("GH_TOKEN")
           headers = {"Authorization": f"Bearer {token}", "User-Agent": "GitHub-Action"}
-          
+
           repos = []
           page = 1
           while page <= 3:
@@ -58,7 +60,7 @@ jobs:
                                   langs[lang] = langs.get(lang, 0) + bytes_count
                       except Exception:
                           pass
-                          
+
           total = sum(langs.values())
           if total <= 0:
               exit(0)
@@ -99,7 +101,7 @@ jobs:
               badge_url = f"https://img.shields.io/badge/{label_name}-{pct:.2f}%25-{c_hex}?style=for-the-badge&logo={c_logo}&logoColor={c_text}"
               badge_lines.append(f"![{lang}]({badge_url})")
 
-          stats_md = "\n".join(badge_lines)
+          badges_content = "\n".join(badge_lines)
 
           if os.path.exists("README.md"):
               with open("README.md", "r", encoding="utf-8") as f:
@@ -114,17 +116,21 @@ jobs:
               parts = content.split(start_marker)
               pre = parts[0]
               post = parts[1].split(end_marker)[1]
-              new_content = pre + start_marker + "\n" + stats_md + "\n" + end_marker + post
+              new_content = pre + start_marker + "\n" + badges_content + "\n" + end_marker + post
           else:
-              new_content = content + f"\n\n{start_marker}\n{stats_md}\n{end_marker}\n"
+              new_content = content + f"\n\n{start_marker}\n{badges_content}\n{end_marker}\n"
 
           with open("README.md", "w", encoding="utf-8") as f:
               f.write(new_content)
           '
 
-      - name: Configurar Git y subir cambios
+      - name: Limpiar archivo obsoleto si existe
+        run: rm -f languages_card.png
+
+      - name: Commit y Push de cambios
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
-          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: actualizar insignias de lenguajes privados y públicos dinámicamente" && git push)
+          git rm --ignore-unmatch languages_card.png
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: actualizar insignias dinámicas con porcentajes reales" && git push)
