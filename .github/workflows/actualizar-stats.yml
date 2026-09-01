@@ -33,12 +33,22 @@ jobs:
           token = os.environ.get("GH_TOKEN")
           headers = {"Authorization": f"Bearer {token}", "User-Agent": "GitHub-Action"}
 
-          req = urllib.request.Request("https://api.github.com/user/repos?visibility=private&per_page=100", headers=headers)
-          try:
-              with urllib.request.urlopen(req) as response:
-                  repos = json.loads(response.read().decode())
-          except Exception:
-              repos = []
+          # Paginación para obtener todos los repositorios privados y públicos (hasta 300)
+          repos = []
+          page = 1
+          while page <= 3:
+              req = urllib.request.Request(f"https://api.github.com/user/repos?visibility=all&per_page=100&page={page}", headers=headers)
+              try:
+                  with urllib.request.urlopen(req) as response:
+                      data = json.loads(response.read().decode())
+                      if not data:
+                          break
+                      repos.extend(data)
+                      if len(data) < 100:
+                          break
+              except Exception:
+                  break
+              page += 1
 
           langs = {}
           for repo in repos:
@@ -58,27 +68,23 @@ jobs:
           if total <= 0:
               exit(0)
 
-          # Ordenar todos los lenguajes sin limitar a 6
           sorted_langs = sorted(langs.items(), key=lambda x: x[1], reverse=True)
 
           colors = {
-              "Shell": (137, 224, 81), "Python": (53, 114, 165), "PHP": (79, 93, 149),
-              "JavaScript": (241, 224, 90), "HTML": (227, 76, 38), "CSS": (86, 61, 124),
-              "C++": (243, 75, 125), "Rust": (222, 165, 132), "Godot": (255, 255, 255),
-              "TypeScript": (49, 120, 198), "Smarty": (255, 40, 0), "Vue": (65, 184, 131),
-              "SCSS": (199, 125, 162), "Dockerfile": (56, 77, 108), "Makefile": (66, 116, 85)
+              "PHP": (79, 93, 149), "SQL": (224, 144, 56), "CSS": (86, 61, 124),
+              "JavaScript": (241, 224, 90), "HTML": (227, 76, 38), "GDScript": (53, 114, 165),
+              "Shell": (137, 224, 81), "Less": (204, 204, 204), "Python": (53, 114, 165),
+              "TypeScript": (49, 120, 198), "Vue": (65, 184, 131), "SCSS": (199, 125, 162)
           }
-          default_color = (204, 204, 204)
+          default_color = (150, 150, 150)
 
-          # Filtrar lenguajes con menos de 0.1% para calcular filas reales
           filtered_langs = []
           for lang, b in sorted_langs:
               pct = (b / total) * 100
               if pct >= 0.1:
                   filtered_langs.append((lang, b, pct))
 
-          # Altura dinámica según la cantidad de lenguajes encontrados (60px header + 36px por lenguaje + 20px padding)
-          width, height = 500, 60 + (len(filtered_langs) * 36) + 20
+          width, height = 550, 60 + (len(filtered_langs) * 36) + 20
           img = Image.new("RGBA", (width, height), (13, 17, 23, 255))
           draw = ImageDraw.Draw(img)
 
@@ -95,11 +101,11 @@ jobs:
               color = colors.get(lang, default_color)
 
               draw.text((20, y_offset), lang, fill=(201, 209, 217), font=font_text)
-              draw.text((425, y_offset), f"{pct:.1f}%", fill=(139, 148, 158), font=font_text)
+              draw.text((475, y_offset), f"{pct:.2f}%", fill=(139, 148, 158), font=font_text)
 
               bar_y = y_offset + 18
-              draw.rounded_rectangle([20, bar_y, 475, bar_y + 8], radius=4, fill=(48, 54, 61))
-              fill_width = int(455 * (pct / 100))
+              draw.rounded_rectangle([20, bar_y, 525, bar_y + 8], radius=4, fill=(48, 54, 61))
+              fill_width = int(505 * (pct / 100))
               if fill_width > 0:
                   draw.rounded_rectangle([20, bar_y, 20 + fill_width, bar_y + 8], radius=4, fill=color)
 
@@ -144,4 +150,4 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md languages_card.png
-          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: actualizar imagen completa de lenguajes" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: actualizar imagen con paginacion y todos los repos" && git push)
