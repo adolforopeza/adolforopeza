@@ -21,8 +21,8 @@ A continuación, se detallan algunos de los repositorios más relevantes de mi p
 <table width="100%">
   <thead>
     <tr>
-      <th align="left" width="25%">Proyecto</th>
-      <th align="left" width="75%">Descripción</th>
+      <th align="left" width="35%">Proyecto</th>
+      <th align="left" width="65%">Descripción</th>
     </tr>
   </thead>
   <tbody>
