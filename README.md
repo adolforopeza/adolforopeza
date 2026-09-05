@@ -6,21 +6,37 @@ Actualmente explorando el desarrollo de videojuegos con Godot 4
 
 ---
 
-<table align="center">
-  <tr>
-    <td align="center"><b>Top Languages</b></td>
-    <td align="center"><b>All Languages</b></td>
-  </tr>
-  <tr>
-    <td><img src="https://adolforopeza-github-stats.vercel.app/top_languages" alt="Top Languages"></td>
-    <td><img src="https://adolforopeza-github-stats.vercel.app/all_languages" alt="All Languages"></td>
-  </tr>
-</table>
+<p align="center">
+  <img src="https://adolforopeza-github-stats.vercel.app/top_languages" alt="Top Languages" width="600px">
+</p>
+
+<p align="center">
+  <img src="https://adolforopeza-github-stats.vercel.app/all_languages" alt="All Languages" width="600px">
+</p>
 
 ### 📂 Proyectos Destacados
 
 A continuación, se detallan algunos de los repositorios más relevantes de mi portafolio:
 
-*   🛒 **[CustomerPartner](https://github.com/adolforopeza/CustomerPartner)**: Desarrollo de módulos y funcionalidades para la gestión de clientes y partners en entornos e-commerce.
-*   🚚 **[DetrackShippingManager](https://github.com/adolforopeza/DetrackShippingManager)**: Integración de módulos de logística y pasarelas para la automatización de envíos y sincronización de inventarios.
-*   🧹 **[LogCleaner](https://github.com/adolforopeza/LogCleaner)**: Herramienta para la optimización, mantenimiento y limpieza de logs del sistema, garantizando el rendimiento y la estabilidad del servidor.
+<table width="100%">
+  <thead>
+    <tr>
+      <th align="left" width="25%">Proyecto</th>
+      <th align="left" width="75%">Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">🛒 <b><a href="https://github.com/adolforopeza/CustomerPartner">CustomerPartner</a></b></td>
+      <td>Desarrollo de módulos y funcionalidades para la gestión de clientes y partners en entornos e-commerce.</td>
+    </tr>
+    <tr>
+      <td align="left">🚚 <b><a href="https://github.com/adolforopeza/DetrackShippingManager">DetrackShippingManager</a></b></td>
+      <td>Integración de módulos de logística y pasarelas para la automatización de envíos y sincronización de inventarios.</td>
+    </tr>
+    <tr>
+      <td align="left">🧹 <b><a href="https://github.com/adolforopeza/LogCleaner">LogCleaner</a></b></td>
+      <td>Herramienta para la optimización, mantenimiento y limpieza de logs del sistema, garantizando el rendimiento y la estabilidad del servidor.</td>
+    </tr>
+  </tbody>
+</table>
